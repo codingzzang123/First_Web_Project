@@ -17,8 +17,6 @@
 	
 	<%	
 		String id = uvo.getId();
-		//out.println(id);
-		//out.println(uvo.getId());
 		if(udao.idCheck(id)){
 			
 			response.sendRedirect("../page/acc/fail.jsp");
@@ -30,29 +28,6 @@
 			response.sendRedirect("../page/acc/login.jsp");
 			System.out.print("중복 없음!!");
 		}
-		
-		/*List<userVO> lu = udao.selectAll();	
-		
-		String tmpId = uvo.getId();
-		boolean flag = false;
-		
-		if(lu == null){
-			flag = false;			
-		}else{
-			for(userVO u : lu){
-				if(tmpId.equals(u.getId())){
-					flag = true;
-					break;
-					
-				}
-			}
-		}
-		if (flag){ //아이디가 중복된다면 
-			response.sendRedirect("../page/acc/fail.jsp");
-		}else{
-			//udao.insertUser(tmpId, uvo.getPw(), uvo.getAge(), uvo.getComment());
-			response.sendRedirect("../page/acc/login.jsp");
-		}*/
 		
 	%>
 </body>
