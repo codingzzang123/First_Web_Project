@@ -3,13 +3,6 @@
     import="java.sql.* , user.*, java.util.* , template.* " 
     %>
 <% request.setCharacterEncoding("UTF-8");%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
 	<jsp:useBean id="udao" class="user.userDAO" />
 	<jsp:useBean id="uvo" class="user.userVO" />
@@ -17,18 +10,18 @@
 	
 	<%	
 		String id = uvo.getId();
-		if(udao.idCheck(id)){
+		if(udao.idCheck(id)){ %>
 			
-			response.sendRedirect("../page/acc/fail.jsp");
-			System.out.print("중복 있음!!");
+			<script>
+				alert("이미 존재하는 아이디 입니다.")
+				history.go(-1);
+			</script>
 			
 			
-		}else{ 
+		<%}else{ 
 			udao.insertUser(uvo.getId(), uvo.getPw(), uvo.getAge(), uvo.getComment());
 			response.sendRedirect("../page/acc/login.jsp");
 			System.out.print("중복 없음!!");
 		}
 		
 	%>
-</body>
-</html>

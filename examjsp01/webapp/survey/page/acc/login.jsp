@@ -67,7 +67,16 @@
     
 	  </head>
 	  
-	  	
+  <% 
+  	String reId = ""; boolean flag = false;
+  	Cookie[] co = request.getCookies(); 
+	for(Cookie c:co){
+		if((c.getName()).equals("remember")){
+			reId = c.getValue();
+			flag = true;
+		}
+	}	
+  			%>	  	
 	  
   <body class="text-center"> 
 	<main class="form-signin">
@@ -77,17 +86,19 @@
 	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 	
 	    <div class="form-floating">
-	      <input type="text" name="id" class="form-control" id="floatingInput" placeholder="Id">
-	      <label for="floatingInput">Email address</label>
+	      <input type="text" name="id" class="form-control" id="floatingInput" placeholder="Id"
+	      <% if(flag){%> value="<%= reId %>" <%}%>>
+	      <label for="floatingInput">ID</label>
 	    </div>
 	    <div class="form-floating">
 	      <input type="password" name="pw" class="form-control" id="floatingPassword" placeholder="Password">
 	      <label for="floatingPassword">Password</label>
 	    </div>
-	
+		
 	    <div class="checkbox mb-3">
 	      <label>
-	        <input type="checkbox" value="remember-me"> Remember me(No function)
+	        <input type="checkbox" name="remember" value="remember" 
+	       <%if(flag){%> checked <%}%> > Remember me
 	      </label>
 	    </div>
 	    <input type="button" value="Login" onclick="inputCheck()" class="w-100 btn btn-lg btn-primary">
