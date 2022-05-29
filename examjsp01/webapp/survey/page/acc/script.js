@@ -24,6 +24,7 @@ function idCheck(id){
 		
 	}	
 
+
 function inputCheck(){
     if(document.loginForm.id.value==""){
         alert("아이디를 입력해 주세요.");
@@ -39,5 +40,7 @@ function inputCheck(){
    
     document.loginForm.submit();
 }
+
+
 
 	

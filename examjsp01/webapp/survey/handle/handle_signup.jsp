@@ -7,7 +7,6 @@
 	<jsp:useBean id="udao" class="user.userDAO" />
 	<jsp:useBean id="uvo" class="user.userVO" />
 	<jsp:setProperty property="*" name="uvo" />
-	
 	<%	
 		String id = uvo.getId();
 		if(udao.idCheck(id)){ %>
@@ -21,7 +20,7 @@
 		<%}else{ 
 			udao.insertUser(uvo.getId(), uvo.getPw(), uvo.getAge(), uvo.getComment());
 			response.sendRedirect("../page/acc/login.jsp");
-			System.out.print("중복 없음!!");
 		}
 		
-	%>
+	%> 
+

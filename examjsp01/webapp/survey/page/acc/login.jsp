@@ -86,8 +86,7 @@
 	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 	
 	    <div class="form-floating">
-	      <input type="text" name="id" class="form-control" id="floatingInput" placeholder="Id"
-	      <% if(flag){%> value="<%= reId %>" <%}%>>
+	      <input type="text" name="id" class="form-control" id="floatingInput" placeholder="Id" <% if(flag){%> value="<%= reId %>" <%}%>>
 	      <label for="floatingInput">ID</label>
 	    </div>
 	    <div class="form-floating">
@@ -97,8 +96,7 @@
 		
 	    <div class="checkbox mb-3">
 	      <label>
-	        <input type="checkbox" name="remember" value="remember" 
-	       <%if(flag){%> checked <%}%> > Remember me
+	        <input type="checkbox" name="remember" value="remember" <%if(flag){%> checked <%}%> > Remember me
 	      </label>
 	    </div>
 	    <input type="button" value="Login" onclick="inputCheck()" class="w-100 btn btn-lg btn-primary">

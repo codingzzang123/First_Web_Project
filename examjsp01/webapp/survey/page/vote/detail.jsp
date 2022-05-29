@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<c:if test="${loginID eq null }"><c:redirect url="/error.jsp" context="/examjsp01"/></c:if>
+	
 	<jsp:include page="/survey/template/navbar.jsp"></jsp:include>
 	<jsp:useBean id="tdao" class="vote.TopicDAO"></jsp:useBean>
 	<jsp:useBean id="cdao" class="vote.ChoiceDAO"></jsp:useBean>

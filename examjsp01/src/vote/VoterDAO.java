@@ -21,6 +21,7 @@ public class VoterDAO {
 	
 	public void insertInfo(String user, String subject, String chname) {
 		String sql = "INSERT INTO VOTER VALUES(?,?,?)";
+		
 		try {
 			
 			conn = pool.getConnection();
