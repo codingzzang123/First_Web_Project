@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="user.*"%>
 <% request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
@@ -10,8 +10,9 @@
 
 </head>
 <body>
-	<jsp:useBean id="udao" class="user.userDAO" />
+	
 	<%
+		userDAO udao = userDAO.getInstance();
 		String id = request.getParameter("id");
 		if(udao.idCheck(id)){
 			out.println(id+" 는 이미 존재하는 ID입니다.<br><br>");

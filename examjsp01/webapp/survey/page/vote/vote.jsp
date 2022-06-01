@@ -10,7 +10,6 @@
 </head>
 <body>
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<c:if test="${loginID eq null }"><c:redirect url="/error.jsp" context="/examjsp01"/></c:if>
 	
 
 	<%

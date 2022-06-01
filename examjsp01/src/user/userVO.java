@@ -5,19 +5,39 @@ public class userVO {
 	private String pw;
 	private String age;
 	private String comment;
+	private String img;
+	private String code;
 	
 	public userVO() {}
 	
-	public userVO(String id, String pw, String age, String comment) {
+	public userVO(String id, String pw, String age, String comment,String img, String code) {
 		super();
 		this.id=id;
 		this.pw=pw;
 		this.age=age;
 		this.comment=comment;
+		this.img = img;
+		this.code = code;
 	}
 	@Override
 	public String toString() {
 		return "userVO [id=" + id + ", pw=" + pw + ", age=" + age + ", comment=" + comment + "]";
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getId() {

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8");%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="board.*, java.util.* " %>
+<%@ page import="board.*, user.*, java.util.* " %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +34,7 @@
 	    dao.clicks(num); //클릭 수 1증가
 	    
 	    vo = dao.select(num);
+	    String makerP = vo.getMaker();
 	    pageContext.setAttribute("detail",vo);
 	    pageContext.setAttribute("num",num);
 	    
@@ -45,7 +46,12 @@
 	    //댓글에 대한 답변?
 	   	List<ReplyVO> reReplys = daoReply.reReplys(num);
 	   	pageContext.setAttribute("reReplys", reReplys);
-	    
+	   	
+	   	//유저 사진 가져오기
+		userDAO udao = userDAO.getInstance();
+	   	String code = udao.getPicCode(makerP);
+	   	
+	   	pageContext.setAttribute("code",code);
 	%>
 	
 	<jsp:include page="/survey/template/navbar.jsp"></jsp:include>
@@ -55,9 +61,21 @@
         <br>
         <div class="row">
             <div class="col-lg-8">
-               <textarea class="form-control" style="height: 300px;" disabled>${detail.content }</textarea>
+               <textarea class="form-control" style="height: 400px;" disabled>${detail.content }</textarea>
             </div>
             <div class="col-lg-4" style="margin:auto">
+            	<c:choose>
+					<c:when test="${code ne '0.png' }">
+						<div class="text-center mt-5">
+				            <img src="http://localhost:8080/examjsp01/fileUpload/acc/${code }" class="rounded-circle" width="250px    ">
+				        </div>
+					</c:when>
+					<c:when test="${code eq '0.png' }">
+						<div class="text-center mt-5">
+				            <img src="http://localhost:8080/examjsp01/fileUpload/acc/default.jfif" class="rounded-circle" width="250px    ">
+				        </div>
+					</c:when>
+				</c:choose>
                 <div class="mt-5 text-center">
                     written by <b>${detail.maker }</b>
                 </div>
@@ -117,7 +135,7 @@
 			<c:forEach var="re" items="${replys }">
 				<div class="row" id="reply">
 					<div class="col-lg-1">${re.maker }</div>
-					<div class="col-lg-8" onclick="make(${i})">${re.content }
+					<div class="col-lg-8" onclick="maketest(${i})">${re.content }
 					</div>
 					<div class="col-lg-2 text-end">${re.pubdate }</div>
 					<c:choose>
@@ -186,6 +204,32 @@
         </div>
 	
    		<script>
+   		var arr = [];
+   	
+   		for(var i=0; i<100; i++){
+   			arr.push(0);
+   		}
+   		function maketest(i){
+   			var el = "here"+i;
+			const div = document.getElementById(el);
+   			if(arr[i]>0){
+   				if(div.style.display === 'none')  {
+					    div.style.display = 'block';
+			    }else {
+					    div.style.display = 'none';
+			    }
+   			}
+   			
+   			if(arr[i]==0){
+   				d = document.getElementById(el)
+	       		n = document.createElement("div")
+		        n.setAttribute('class', 'mt-1')
+		        n.innerHTML ='<div style="display: inline-block; margin-right:10px;">┖ </div><div class="col-lg-8" style="display: inline-block"><input type="text" name="con2" class="form-control" placeholder="답글을 입력해주세요🗨"></div><div class="col-lg-3" style="display: inline-block"><button class="btn btn-dark" type="submit" style="margin-left:10px">확인</button></div>'
+	       		d.appendChild(n)
+		        arr[i]=1;
+   			}
+   		}
+   		
    		var ch1 = 0;
    		var ch2 = 0;
    		var ch3 = 0;
@@ -197,7 +241,7 @@
    					    div.style.display = 'block';
    					  }else {
    					    div.style.display = 'none';
-   					  }
+  					  }
    				}
    				if(ch1==0){
    					d = document.getElementById("here1")

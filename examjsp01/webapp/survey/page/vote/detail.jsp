@@ -15,14 +15,19 @@
 	<jsp:useBean id="tdao" class="vote.TopicDAO"></jsp:useBean>
 	<jsp:useBean id="cdao" class="vote.ChoiceDAO"></jsp:useBean>
 	<jsp:useBean id="vdao" class="vote.VoterDAO"></jsp:useBean>
-	<%@ page import = "java.util.*, vote.* " %>
+	<%@ page import = "java.util.*, vote.*,user.* " %>
 	<% 
 		String sub = request.getParameter("sub"); //subject
 		System.out.println("sub:"+sub);
 		TopicVO tv = tdao.selectTopic(sub); 
 		List<String> ls = vdao.getVoter(sub);
 		
-		
+		//유저 사진 가져오기
+		String maker = tv.getMaker();
+		userDAO udao = userDAO.getInstance();
+	   	String code = udao.getPicCode(maker);
+	   	
+	   	pageContext.setAttribute("code",code);
     	
 			%>
 		
@@ -34,6 +39,18 @@
 	        <div class="col-lg-8"><textarea class="form-control" style="height: 300px;" disabled><%= sub %></textarea></div>
 	        <div class="col-lg-4" style="margin:auto">
 	            <div class="text-center">
+	            	<c:choose>
+						<c:when test="${code ne '0.png' }">
+							<div class="text-center mt-5">
+					            <img src="http://localhost:8080/examjsp01/fileUpload/acc/${code }" class="rounded-circle" width="250px    ">
+					        </div>
+						</c:when>
+						<c:when test="${code eq '0.png' }">
+							<div class="text-center mt-5">
+					            <img src="http://localhost:8080/examjsp01/fileUpload/acc/default.jfif" class="rounded-circle" width="250px    ">
+					        </div>
+						</c:when>
+					</c:choose>
 	                made by <b><%= tv.getMaker() %></b>
 	                <br><%= tv.getDate() %>
 	            </div>

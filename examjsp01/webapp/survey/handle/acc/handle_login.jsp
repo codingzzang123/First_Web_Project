@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="user.*"%>
     <% request.setCharacterEncoding("UTF-8");%>
 
-	<jsp:useBean id="udao" class="user.userDAO"></jsp:useBean>
+	
 	<%
+	 	userDAO udao = userDAO.getInstance();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String remember = request.getParameter("remember");
@@ -37,7 +38,7 @@
 			}
 			System.out.println("로그인성공");
 			session.setAttribute("loginID", id);
-			response.sendRedirect("../page/main.jsp");
+			response.sendRedirect("/examjsp01/survey/page/main.jsp");
 					
 		}else{ %>
 			<script>

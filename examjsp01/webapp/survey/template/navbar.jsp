@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,7 +33,8 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Menu
+                  <c:choose><c:when test="${ loginID eq null}">Menu</c:when><c:when test="${loginID ne null }">${loginID }</c:when></c:choose>
+                  
                 </a>
                 
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,8 +42,8 @@
 					<%     
 							String loginID = (String)session.getAttribute("loginID"); 
                 			if(loginID != null){ %>
+                				<li><a class="dropdown-item" href="<%= request.getContextPath() %>/survey/page/acc/info.jsp?user=${loginID}">Profile</a></li>
                 				<li><a class="dropdown-item" href="<%= request.getContextPath() %>/survey/page/acc/logout.jsp">LogOut</a></li>
-                      			<li><a class="dropdown-item" href="#">Sign Delete</a></li>
                 		<%	}else{ %>
                 				<li><a class="dropdown-item" href="<%= request.getContextPath() %>/survey/page/acc/login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="<%= request.getContextPath() %>/survey/page/acc/signUp.jsp">Sign Up</a></li>

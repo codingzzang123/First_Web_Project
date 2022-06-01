@@ -81,7 +81,7 @@
   <body class="text-center"> 
 	<main class="form-signin">
 		
-	  <form action="../../handle/handle_login.jsp" method="post" name="loginForm">
+	  <form action="/examjsp01/survey/handle/acc/handle_login.jsp" method="post" name="loginForm">
 	    <img class="mb-4" src="/examjsp01/survey/img/pngegg.png" width="200" height="200" alt="">
 	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 	
@@ -110,4 +110,5 @@
 
     
   </body>
+  
 </html>

@@ -41,6 +41,31 @@ function inputCheck(){
     document.loginForm.submit();
 }
 
+function update(){
+    if(document.updateForm.id.value==""){
+        alert("아이디를 입력해 주세요.");
+        document.regForm.id.focus();
+        return;
+    }
+    if(document.updateForm.pw.value==""){
+        alert("비밀번호를 입력해 주세요.");
+        document.regForm.pw.focus();
+        return;
+    }
+if(document.updateForm.age.value==""){
+        alert("나이를 입력해 주세요.");
+        document.regForm.age.focus();
+        return;
+    }
+if(document.updateForm.comment.value==""){
+        alert("comment를 입력해 주세요.");
+        document.regForm.comment.focus();
+        return;
+    }
+   
+   
+    document.updateForm.submit();
+}
 
 
 	
